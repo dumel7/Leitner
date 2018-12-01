@@ -6,13 +6,20 @@
     <string name="title_settings">Settings</string>
     <string name="title_sets">Sets</string>
     <string name="title_flashcard">Flashcard</string>
+    <string name="title_LeitnerDescription">Leitner</string>
     <!-- Actions -->
     <string name="action_search">Search</string>
     <string name="search_hint">Type …</string>
     <string name="action_add">Add</string>
     <string name="name">Name:</string>
+    <string name="descriptionLeitnerTextView">Description of Leitner Method</string>
     <!-- TAGS -->
-    <string name="learn_tag">LearnTag</string>
-    <string name="decks_tag">DecksTag</string>
+    <string name="learn_tag">Learn</string>
+    <string name="decks_tag">Decks</string>
+
+    <!--others-->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ver">ver. </string>
+    <string name="leinter_description">Leitner Description</string>
 
 </resources>

@@ -174,6 +174,10 @@ class SetFragment : Fragment() {
         mAdapter.notifyDataSetChanged()
     }
 
+    fun getCount(setItem: SetContent.SetItem): CharSequence? {
+        return db.flashcardDao().getCountBySetId(setItem.cSet.setId!!).toString()
+    }
+
     inner class SwipeHandler : SwipeToDeleteCallback(context) {
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             val viewHolder = viewHolder as MySetRecyclerViewAdapter.ViewHolder

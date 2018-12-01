@@ -12,6 +12,9 @@ interface FlashcardDao {
     @Query("SELECT * from flashcards where cSet = :setId")
     fun getAllBySetId(setId: Int): List<Flashcard>
 
+    @Query("SELECT * FROM flashcards where cSet in (SELECT cSet from deck_to_set where deck = :deckId)")
+    fun getAllByDeckId(deckId: Int): List<Flashcard>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(flashcard: Flashcard)
 
@@ -23,4 +26,14 @@ interface FlashcardDao {
 
     @Delete
     fun delete(vararg flashcards: Flashcard)
+
+    @Query("UPDATE flashcards SET box = 0 where cSet in (SELECT cSet from deck_to_set where deck = :deckId)")
+    fun resetBoxes(deckId: Int)
+
+    @Query("SELECT count(*) FROM flashcards where cSet in (SELECT cSet from deck_to_set where deck = :deckId)")
+    fun getCountByDeckId(deckId: Int): Int
+
+    @Query("SELECT count(*) FROM flashcards where cSet = :setId")
+    fun getCountBySetId(setId: Int): Int
+
 }

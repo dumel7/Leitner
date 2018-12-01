@@ -32,12 +32,17 @@ class MyDeckRecyclerViewAdapter(private val mValues: List<DeckItem>, private val
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mItem = mFilteredValues[position]
         holder.mContentView.text = mFilteredValues[position].toString()
+        holder.mCountView.text = fragment.getCount(mFilteredValues[position])
 
         holder.mView.setOnClickListener {
             mListener?.onListFragmentInteraction(holder.mItem!!)
         }
         holder.mView.setOnLongClickListener {
-            fragment.changeDeck(holder.mItem)
+            when (fragment.tag){
+                fragment.getString(R.string.decks_tag) -> fragment.changeDeck(holder.mItem)
+                fragment.getString(R.string.learn_tag) -> fragment.resetDeck(holder.mItem)
+                else ->false
+            }
         }
 
     }
@@ -75,11 +80,12 @@ class MyDeckRecyclerViewAdapter(private val mValues: List<DeckItem>, private val
 
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val mContentView: TextView
+        val mCountView: TextView
         var mItem: DeckItem? = null
 
         init {
             mContentView = mView.findViewById<View>(R.id.content) as TextView
-
+            mCountView = mView.findViewById<View>(R.id.number) as TextView
         }
 
         override fun toString(): String {

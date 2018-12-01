@@ -20,6 +20,8 @@ import com.example.donski.leitner.recycleViewAdapter.MyFlashcardRecyclerViewAdap
 import android.widget.LinearLayout
 import com.example.donski.leitner.SwipeToDeleteCallback
 import com.example.donski.leitner.recycleViewAdapter.MyDeckRecyclerViewAdapter
+import java.time.LocalDateTime
+import java.util.*
 
 
 /**
@@ -145,7 +147,7 @@ class FlashcardFragment : Fragment() {
 
         alert.setView(layout)
         alert.setPositiveButton("Add") { _, _ ->
-            db.flashcardDao().insert(Flashcard(null, termBox.text.toString(),definitionBox.text.toString(), cSet.setId!!))
+            db.flashcardDao().insert(Flashcard(null, termBox.text.toString(),definitionBox.text.toString(), cSet.setId!!, 0, Date()))
             refreshAdapter()}
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         alert.show()

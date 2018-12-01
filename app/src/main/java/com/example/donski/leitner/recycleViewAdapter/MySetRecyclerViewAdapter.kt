@@ -34,6 +34,7 @@ class MySetRecyclerViewAdapter(private val mValues: List<SetItem>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.mItem = mFilteredValues[position]
         holder.mContentView.text = mFilteredValues[position].toString()
+        holder.mCountView.text = fragment.getCount(mFilteredValues[position])
 
         holder.mView.setOnClickListener {
             mListener?.onListFragmentInteraction(holder.mItem!!)
@@ -75,10 +76,12 @@ class MySetRecyclerViewAdapter(private val mValues: List<SetItem>,
 
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val mContentView: TextView
+        val mCountView: TextView
         var mItem: SetItem? = null
 
         init {
             mContentView = mView.findViewById<View>(R.id.content) as TextView
+            mCountView = mView.findViewById<View>(R.id.number) as TextView
         }
 
         override fun toString(): String {

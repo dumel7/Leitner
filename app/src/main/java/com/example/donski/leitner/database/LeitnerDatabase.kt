@@ -10,14 +10,13 @@ import com.example.donski.leitner.database.converters.DateTypeConverter
 import com.example.donski.leitner.database.entities.*
 import com.example.donski.leitner.database.entities.CSet
 
-@Database(entities = arrayOf(Deck::class, CSet::class, Flashcard::class, DeckToFlashcard::class, DeckToSet::class),
-        version = 3)
+@Database(entities = arrayOf(Deck::class, CSet::class, Flashcard::class, DeckToSet::class),
+        version = 5)
 @TypeConverters(DateTypeConverter::class)
 abstract class LeitnerDatabase :RoomDatabase(){
     abstract fun deckDao(): DeckDao
     abstract fun setDao(): SetDao
     abstract fun flashcardDao(): FlashcardDao
-    abstract fun deckToFlashcardDao(): DeckToFlashcardDao
     abstract fun deckToSetDao(): DeckToSetDao
 
     companion object {

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swap"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SwapFragment">
+
+    <RelativeLayout
+        android:id="@+id/boxes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp">
+
+        <TextView
+            android:textColor="@android:color/holo_red_dark"
+            android:id="@+id/first_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:text="15" />
+
+        <TextView
+            android:textColor="@android:color/holo_orange_dark"
+            android:id="@+id/second_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_toEndOf="@+id/first_box"
+            android:text="13" />
+
+        <TextView
+            android:textColor="@android:color/holo_orange_light"
+            android:id="@+id/third_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_toEndOf="@+id/second_box"
+            android:text="74" />
+
+        <TextView
+            android:textColor="#ffff66"
+            android:id="@+id/forth_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_toEndOf="@+id/third_box"
+            android:text="74" />
+
+        <TextView
+            android:textColor="@android:color/holo_green_light"
+            android:id="@+id/fifth_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_toEndOf="@+id/forth_box"
+            android:text="74" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/flashcard"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/boxes">
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/flashcard_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SwapFragment"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/flashcard"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="match_parent">
+        <ImageButton
+            android:id="@+id/left_button"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            />
+        <ImageButton
+            android:id="@+id/swap_button"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/left_button"
+            android:src="@drawable/ic_swap"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            />
+        <ImageButton
+            android:layout_toEndOf="@+id/swap_button"
+            android:layout_centerVertical="true"
+            android:id="@+id/right_button"
+            android:src="@drawable/ic_arrow_right"
+            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

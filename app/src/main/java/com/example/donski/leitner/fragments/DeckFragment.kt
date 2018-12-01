@@ -53,7 +53,7 @@ class DeckFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        activity.setTitle(R.string.title_decks)
+        activity.title = tag
         val view = inflater!!.inflate(R.layout.fragment_deck_list, container, false)
         if (view is RecyclerView) {
             db = LeitnerDatabase.getInstance(context)!!
@@ -64,8 +64,10 @@ class DeckFragment : Fragment() {
             view.adapter = mAdapter
             linearLayoutManager = view.layoutManager as LinearLayoutManager
             setRecyclerViewScrollListener(view)
-            val itemTouchHelper = ItemTouchHelper(SwipeHandler())
-            itemTouchHelper.attachToRecyclerView(view)
+            if(tag == view?.resources.getString(R.string.decks_tag)) {
+                val itemTouchHelper = ItemTouchHelper(SwipeHandler())
+                itemTouchHelper.attachToRecyclerView(view)
+            }
         }
         setHasOptionsMenu(true)
         return view
@@ -174,13 +176,28 @@ class DeckFragment : Fragment() {
         mAdapter.notifyDataSetChanged()
     }
 
+    fun resetDeck(deckItem: DeckContent.DeckItem?): Boolean {
+        val alertDialog = AlertDialog.Builder(view!!.context)
+        alertDialog.setTitle("Reset Deck")
+        alertDialog.setPositiveButton("Reset"){ _, _ ->
+            db.flashcardDao().resetBoxes(deckItem!!.deck.deckId!!)
+        }
+        alertDialog.setNegativeButton("Cancel"){ dialog, _ -> dialog.dismiss() }
+        alertDialog.show()
+
+        return true
+    }
+
+    fun getCount(deckItem: DeckContent.DeckItem): CharSequence? {
+        return db.flashcardDao().getCountByDeckId(deckItem.deck.deckId!!).toString()
+    }
+
     inner class SwipeHandler : SwipeToDeleteCallback(context) {
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
             val viewHolder = viewHolder as MyDeckRecyclerViewAdapter.ViewHolder
             db.setDao().getAllSetsByDeck(viewHolder.mItem!!.deck.deckId!!).map { cSet: CSet -> db.setDao().delete(cSet) }
             db.deckDao().delete(viewHolder.mItem!!.deck)
             refreshAdapter()
-
         }
     }
     /**
