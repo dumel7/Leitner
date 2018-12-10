@@ -5,10 +5,15 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
-import com.example.donski.leitner.database.DAO.*
+import com.example.donski.leitner.database.DAO.DeckDao
+import com.example.donski.leitner.database.DAO.DeckToSetDao
+import com.example.donski.leitner.database.DAO.FlashcardDao
+import com.example.donski.leitner.database.DAO.SetDao
 import com.example.donski.leitner.database.converters.DateTypeConverter
-import com.example.donski.leitner.database.entities.*
 import com.example.donski.leitner.database.entities.CSet
+import com.example.donski.leitner.database.entities.Deck
+import com.example.donski.leitner.database.entities.DeckToSet
+import com.example.donski.leitner.database.entities.Flashcard
 
 @Database(entities = arrayOf(Deck::class, CSet::class, Flashcard::class, DeckToSet::class),
         version = 5)

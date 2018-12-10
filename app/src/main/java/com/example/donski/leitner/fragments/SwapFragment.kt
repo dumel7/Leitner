@@ -78,7 +78,7 @@ class SwapFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        LearnContent.ITEMS.flatten().forEach { item ->  db.flashcardDao().insert(item)}
+        LearnContent.ITEMS.flatten().forEach { item ->  db.flashcardDao().update(item)}
         super.onDestroy()
     }
 }

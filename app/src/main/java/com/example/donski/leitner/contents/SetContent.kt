@@ -1,25 +1,17 @@
 package com.example.donski.leitner.contents
 
 import com.example.donski.leitner.database.entities.CSet
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- *
- *
- * TODO: Replace all uses of this class before publishing your app.
- */
 object SetContent {
 
     /**
-     * An array of sample (dummy) items.
+     * An array of set items.
      */
     val ITEMS: MutableList<SetItem> = ArrayList()
 
     /**
-     * A map of sample (dummy) items, by ID.
+     * A map of set, by ID.
      */
     val ITEM_MAP: MutableMap<Int, SetItem> = HashMap()
 
@@ -47,7 +39,7 @@ object SetContent {
     }
 
     /**
-     * A dummy item representing a piece of content.
+     * A set item representing a piece of content.
      */
     class SetItem(val cSet: CSet) {
 

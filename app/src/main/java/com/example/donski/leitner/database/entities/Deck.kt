@@ -1,6 +1,9 @@
 package com.example.donski.leitner.database.entities
 
-import android.arch.persistence.room.*
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.TypeConverters
 import com.example.donski.leitner.database.converters.DateTypeConverter
 import java.util.*
 

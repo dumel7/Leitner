@@ -1,25 +1,17 @@
 package com.example.donski.leitner.contents
 
 import com.example.donski.leitner.database.entities.Flashcard
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- *
- *
- * TODO: Replace all uses of this class before publishing your app.
- */
 object FlashcardContent {
 
     /**
-     * An array of sample flashcard items.
+     * An array of flashcard items.
      */
     val ITEMS: MutableList<FlashcardItem> = ArrayList()
 
     /**
-     * A map of sample flashcard items, by ID.
+     * A map of flashcard items, by ID.
      */
     val ITEM_MAP: MutableMap<Int, FlashcardItem> = HashMap()
 
@@ -49,7 +41,7 @@ object FlashcardContent {
     }
 
     /**
-     * A dummy item representing a piece of content.
+     * A flashcard item representing a piece of content.
      */
     class FlashcardItem(val flashcard: Flashcard) {
 

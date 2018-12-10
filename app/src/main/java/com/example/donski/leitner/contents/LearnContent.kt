@@ -8,7 +8,7 @@ object LearnContent {
 
     val ITEMS: MutableList<MutableList<Flashcard>> = ArrayList()
     val ITEMS_MAP: MutableMap<Int, Flashcard> = HashMap()
-    val MAX = arrayListOf(15,30,45,90,150)
+    val MAX = arrayListOf(2,3,4,5,6)
 
     var currentItem: Flashcard? = null
 
@@ -20,27 +20,25 @@ object LearnContent {
 
     fun fill(list: List<Flashcard>){
         ITEMS.clear()
-        val boxes = list.maxBy { item -> item.box}!!.box
         for (i in 0..5)
             ITEMS.add(ArrayList())
         list.map { item -> ITEMS[item.box].add(item) }
-        ITEMS.forEach { lista -> lista.sortBy { item -> item.lastLearn } }
+        ITEMS.forEach { my_list -> my_list.sortBy { item -> item.lastLearn } }
     }
 
     fun getBoxLength(boxId: Int): String{
-        //return ITEMS_MAP.filter { (key, item) -> item.box == boxId }.count().toString()
         return if (boxId < ITEMS.size) ITEMS[boxId].size.toString() else "0"
     }
 
-    fun getBoxLengthInt(boxId: Int): Int{
+    private fun getBoxLengthInt(boxId: Int): Int{
         return if (boxId < ITEMS.size) ITEMS[boxId].size else 0
     }
 
     fun getNextItem(): Flashcard?{
         side = Side.TERM
         //checking the max
-        for(i in 0..4){
-            if(getBoxLengthInt(i) > MAX[i]) {
+        for(i in 4 downTo 1){
+            if(getBoxLengthInt(i) >= MAX[i]) {
                 currentItem = ITEMS[i].minBy { item -> item.lastLearn }
                 if(currentItem != null)
                     return currentItem
@@ -62,7 +60,7 @@ object LearnContent {
                 break
             }
         }
-        currentItem?.box = if(correct) currentItem!!.box + 1 else 0
+        currentItem?.box = if(correct) currentItem!!.box + 1 else 1
         currentItem?.lastLearn = Date()
         ITEMS[currentItem!!.box].add(currentItem!!)
     }

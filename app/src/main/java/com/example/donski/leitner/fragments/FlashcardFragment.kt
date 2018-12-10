@@ -23,20 +23,7 @@ import com.example.donski.leitner.recycleViewAdapter.MyDeckRecyclerViewAdapter
 import java.time.LocalDateTime
 import java.util.*
 
-
-/**
- * A fragment representing a list of Items.
- *
- *
- * Activities containing this fragment MUST implement the [OnListFragmentInteractionListener]
- * interface.
- */
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the
- * fragment (e.g. upon screen orientation changes).
- */
 class FlashcardFragment : Fragment() {
-    // TODO: Customize parameters
     private var mColumnCount = 1
     private var mListener: OnListFragmentInteractionListener? = null
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -165,18 +152,20 @@ class FlashcardFragment : Fragment() {
         layout.orientation = LinearLayout.VERTICAL
 
         val termBox = EditText(context)
+        termBox.setText(item?.flashcard?.term.toString())
         termBox.hint = "Term"
         layout.addView(termBox)
 
         val definitionBox = EditText(context)
+        definitionBox.setText(item?.flashcard?.definition.toString())
         definitionBox.hint = "Description"
         layout.addView(definitionBox)
 
         alert.setView(layout)
         alert.setPositiveButton("Change") { _, _ ->
             item!!.flashcard.term = termBox.text.toString()
-            item!!.flashcard.definition = termBox.text.toString()
-            db.flashcardDao().insert(item.flashcard)
+            item!!.flashcard.definition = definitionBox.text.toString()
+            db.flashcardDao().update(item.flashcard)
             refreshAdapter()
         }
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
@@ -200,26 +189,12 @@ class FlashcardFragment : Fragment() {
         }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
-     */
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onListFragmentInteraction(item: FlashcardContent.FlashcardItem)
     }
 
     companion object {
-
-        // TODO: Customize parameter argument names
         private val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
         fun newInstance(columnCount: Int, setItem: SetContent.SetItem): FlashcardFragment {
             val fragment = FlashcardFragment()
             val args = Bundle()

@@ -13,11 +13,6 @@ import com.example.donski.leitner.fragments.DeckFragment.OnListFragmentInteracti
 import com.example.donski.leitner.contents.DeckContent.DeckItem
 import com.example.donski.leitner.fragments.DeckFragment
 
-/**
- * [RecyclerView.Adapter] that can display a DeckItem and makes a call to the
- * specified [OnListFragmentInteractionListener].
- * TODO: Replace the implementation with code for your data type.
- */
 class MyDeckRecyclerViewAdapter(private val mValues: List<DeckItem>, private val mListener: OnListFragmentInteractionListener?, private val fragment: DeckFragment)
     : RecyclerView.Adapter<MyDeckRecyclerViewAdapter.ViewHolder>(), Filterable {
 
@@ -79,19 +74,13 @@ class MyDeckRecyclerViewAdapter(private val mValues: List<DeckItem>, private val
 
 
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mContentView: TextView
-        val mCountView: TextView
+        val mContentView: TextView = mView.findViewById<View>(R.id.content) as TextView
+        val mCountView: TextView = mView.findViewById<View>(R.id.number) as TextView
         var mItem: DeckItem? = null
-
-        init {
-            mContentView = mView.findViewById<View>(R.id.content) as TextView
-            mCountView = mView.findViewById<View>(R.id.number) as TextView
-        }
 
         override fun toString(): String {
             return super.toString() + " '" + mContentView.text + "'"
         }
-
 
         companion object {
             private val DECK_KEY = "DECK"

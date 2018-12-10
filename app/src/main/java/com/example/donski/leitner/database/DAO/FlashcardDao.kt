@@ -15,6 +15,9 @@ interface FlashcardDao {
     @Query("SELECT * FROM flashcards where cSet in (SELECT cSet from deck_to_set where deck = :deckId)")
     fun getAllByDeckId(deckId: Int): List<Flashcard>
 
+    @Update
+    fun update(flashcard: Flashcard)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(flashcard: Flashcard)
 

@@ -1,7 +1,6 @@
 package com.example.donski.leitner.fragments
 
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -13,31 +12,16 @@ import android.view.*
 import android.widget.EditText
 import com.example.donski.leitner.R
 import com.example.donski.leitner.SwipeToDeleteCallback
-import com.example.donski.leitner.contents.DeckContent
 import com.example.donski.leitner.contents.DeckContent.DeckItem
-import com.example.donski.leitner.recycleViewAdapter.MySetRecyclerViewAdapter
 import com.example.donski.leitner.contents.SetContent
-
 import com.example.donski.leitner.contents.SetContent.SetItem
 import com.example.donski.leitner.database.LeitnerDatabase
 import com.example.donski.leitner.database.entities.CSet
 import com.example.donski.leitner.database.entities.Deck
 import com.example.donski.leitner.database.entities.DeckToSet
-import com.example.donski.leitner.recycleViewAdapter.MyDeckRecyclerViewAdapter
+import com.example.donski.leitner.recycleViewAdapter.MySetRecyclerViewAdapter
 
-/**
- * A fragment representing a list of Items.
- *
- *
- * Activities containing this fragment MUST implement the [OnListFragmentInteractionListener]
- * interface.
- */
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the
- * fragment (e.g. upon screen orientation changes).
- */
 class SetFragment : Fragment() {
-    // TODO: Customize parameters
     private var mColumnCount = 1
     private var mListener: OnListFragmentInteractionListener? = null
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -159,7 +143,7 @@ class SetFragment : Fragment() {
 
         alert.setView(input)
         alert.setPositiveButton("Change") { _, _ ->    item!!.cSet.name = input.text.toString()
-            db.setDao().insert(item.cSet)
+            db.setDao().update(item.cSet)
             refreshAdapter()
         }
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
@@ -186,26 +170,15 @@ class SetFragment : Fragment() {
 
         }
     }
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
-     */
+
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onListFragmentInteraction(item: SetItem)
     }
 
     companion object {
 
-        // TODO: Customize parameter argument names
         private val ARG_COLUMN_COUNT = "column-count"
 
-        // TODO: Customize parameter initialization
         fun newInstance(columnCount: Int, deckItem: DeckItem): SetFragment {
             val fragment = SetFragment()
             val args = Bundle()

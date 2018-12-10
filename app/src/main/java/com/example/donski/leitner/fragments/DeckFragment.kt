@@ -19,20 +19,7 @@ import com.example.donski.leitner.database.entities.CSet
 import com.example.donski.leitner.database.entities.Deck
 import java.util.*
 
-
-/**
- * A fragment representing a list of Items.
- *
- *
- * Activities containing this fragment MUST implement the [OnListFragmentInteractionListener]
- * interface.
- */
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the
- * fragment (e.g. upon screen orientation changes).
- */
 class DeckFragment : Fragment() {
-    // TODO: Customize parameters
     private var mColumnCount = 1
     private var mListener: OnListFragmentInteractionListener? = null
     private lateinit var linearLayoutManager: LinearLayoutManager
@@ -161,7 +148,7 @@ class DeckFragment : Fragment() {
 
         alert.setView(input)
         alert.setPositiveButton("Change") { _, _ ->    item!!.deck.name = input.text.toString()
-                                                            db.deckDao().insert(item.deck)
+                                                            db.deckDao().update(item.deck)
                                                             refreshAdapter()
         }
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
@@ -200,26 +187,13 @@ class DeckFragment : Fragment() {
             refreshAdapter()
         }
     }
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments](http://developer.android.com/training/basics/fragments/communicating.html) for more information.
-     */
+
     interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         fun onListFragmentInteraction(item: DeckContent.DeckItem)
     }
 
     companion object {
-
-        // TODO: Customize parameter argument names
         private val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
         fun newInstance(columnCount: Int): DeckFragment {
             val fragment = DeckFragment()
             val args = Bundle()

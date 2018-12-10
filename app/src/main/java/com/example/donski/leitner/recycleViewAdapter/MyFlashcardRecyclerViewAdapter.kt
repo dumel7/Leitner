@@ -78,14 +78,9 @@ class MyFlashcardRecyclerViewAdapter(private val mValues: List<FlashcardItem>,
     }
 
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mTermView: TextView
-        val mDefinitionView: TextView
+        val mTermView: TextView = mView.findViewById<View>(R.id.term) as TextView
+        val mDefinitionView: TextView = mView.findViewById<View>(R.id.definition) as TextView
         var mItem: FlashcardItem? = null
-
-        init {
-            mTermView = mView.findViewById<View>(R.id.term) as TextView
-            mDefinitionView = mView.findViewById<View>(R.id.definition) as TextView
-        }
 
         companion object {
             private val Flashcard_KEY = "Flashcard"

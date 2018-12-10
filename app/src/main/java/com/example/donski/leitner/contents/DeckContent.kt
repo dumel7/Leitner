@@ -1,25 +1,17 @@
 package com.example.donski.leitner.contents
 
 import com.example.donski.leitner.database.entities.Deck
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- *
- *
- * TODO: Replace all uses of this class before publishing your app.
- */
 object DeckContent {
 
     /**
-     * An array of sample deck items.
+     * An array of deck items.
      */
     val ITEMS: MutableList<DeckItem> = ArrayList()
 
     /**
-     * A map of sample deck items, by ID.
+     * A map of deck items, by ID.
      */
     val ITEM_MAP: MutableMap<Int, DeckItem> = HashMap()
 
@@ -35,7 +27,7 @@ object DeckContent {
 
     private fun addItem(item: DeckItem) {
         ITEMS.add(item)
-        ITEM_MAP.put(item.deck.deckId!!, item)
+        ITEM_MAP[item.deck.deckId!!] = item
     }
 
 
@@ -49,7 +41,7 @@ object DeckContent {
     }
 
     /**
-     * A dummy item representing a piece of content.
+     * A deck item representing a piece of content.
      */
     class DeckItem(val deck: Deck) {
 
