@@ -14,6 +14,7 @@ import com.example.donski.leitner.recycleViewAdapter.MyDeckRecyclerViewAdapter
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.widget.EditText
+import android.widget.Toast
 import com.example.donski.leitner.SwipeToDeleteCallback
 import com.example.donski.leitner.database.entities.CSet
 import com.example.donski.leitner.database.entities.Deck
@@ -105,6 +106,8 @@ class DeckFragment : Fragment() {
                 mAdapter.filter.filter(query)
                 return false
             }
+
+
         })
 
         //add item
@@ -129,8 +132,13 @@ class DeckFragment : Fragment() {
         input.hint = "Title"
 
         alert.setView(input)
-        alert.setPositiveButton("Add") { _, _ ->   db.deckDao().insert(Deck(null, input.text.toString(), Date(0)))
-                                                        refreshAdapter()
+        alert.setPositiveButton("Add") { _, _ ->
+            if (input.text.isEmpty()) {
+                Toast.makeText(context, "You cannot add empty deck", Toast.LENGTH_LONG).show()
+            }else{
+                db.deckDao().insert(Deck(null, input.text.toString(), Date(0)))
+                refreshAdapter()
+        }
         }
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         alert.show()
@@ -147,9 +155,14 @@ class DeckFragment : Fragment() {
         input.hint = "Title"
 
         alert.setView(input)
-        alert.setPositiveButton("Change") { _, _ ->    item!!.deck.name = input.text.toString()
-                                                            db.deckDao().update(item.deck)
-                                                            refreshAdapter()
+        alert.setPositiveButton("Change") { _, _ ->
+            if (input.text.isEmpty()) {
+                Toast.makeText(context, "You cannot change to empty deck", Toast.LENGTH_LONG).show()
+            }else{
+                item!!.deck.name = input.text.toString()
+                db.deckDao().update(item.deck)
+                refreshAdapter()
+            }
         }
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         alert.show()

@@ -21,7 +21,7 @@ class SettingsFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_settings, container, false)
         activity.title = getString(R.string.title_settings)
-        view.findViewById<TextView>(R.id.ver).text = getString(R.string.ver) + BuildConfig.VERSION_NAME
+        view.findViewById<TextView>(R.id.version_number).text = getString(R.string.ver) + BuildConfig.VERSION_NAME
         view?.findViewById<TextView>(R.id.description)?.setOnClickListener {
             mListener?.onSettingsFragmentInteraction(SettingsEnum.Description)
         }

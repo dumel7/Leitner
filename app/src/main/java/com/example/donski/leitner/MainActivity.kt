@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), DeckFragment.OnListFragmentInteraction
                         .replace(R.id.mainFrame, DeckFragment.newInstance(1), getString(R.string.decks_tag))
                         .addToBackStack(null)
                         .commit()
-                checkBackStack()
+                //checkBackStack()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_learn -> {
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), DeckFragment.OnListFragmentInteraction
                         .replace(R.id.mainFrame, DeckFragment.newInstance(1), getString(R.string.learn_tag))
                         .addToBackStack(null)
                         .commit()
-                checkBackStack()
+                //checkBackStack()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), DeckFragment.OnListFragmentInteraction
                         .replace(R.id.mainFrame, SettingsFragment.newInstance())
                         .addToBackStack(null)
                         .commit()
-                checkBackStack()
+                //checkBackStack()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -51,18 +51,23 @@ class MainActivity : AppCompatActivity(), DeckFragment.OnListFragmentInteraction
     }
 
 
-
     private fun checkBackStack(){
         if(supportFragmentManager.backStackEntryCount > BackStackLimit)
             supportFragmentManager.popBackStack(0, Intent.FLAG_ACTIVITY_CLEAR_TOP)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         db = LeitnerDatabase.getInstance(this)
-
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.mainFrame, DeckFragment.newInstance(1), getString(R.string.decks_tag))
+                .addToBackStack(null)
+                .commit()
+        //checkBackStack()
     }
 
 
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity(), DeckFragment.OnListFragmentInteraction
                             .replace(R.id.mainFrame, SetFragment.newInstance(1, item))
                             .addToBackStack(null)
                             .commit()
-                        checkBackStack()}
+            }
         }
     }
 
@@ -91,7 +96,6 @@ class MainActivity : AppCompatActivity(), DeckFragment.OnListFragmentInteraction
                 .replace(R.id.mainFrame, FlashcardFragment.newInstance(1, item))
                 .addToBackStack(null)
                 .commit()
-        checkBackStack()
     }
 
     override fun onListFragmentInteraction(item: FlashcardContent.FlashcardItem) {
@@ -105,7 +109,7 @@ class MainActivity : AppCompatActivity(), DeckFragment.OnListFragmentInteraction
                                             .replace(R.id.mainFrame, LeitnerDescriptionFragment.newInstance())
                                             .addToBackStack(null)
                                             .commit()
-                                        checkBackStack()}
+            }
         }
     }
 }

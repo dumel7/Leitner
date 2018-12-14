@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.LeitnerDescriptionFragment">
 
     <TextView
+        android:id="@+id/main_description"
         android:layout_margin="@dimen/text_margin"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/leinter_description" />
+        android:layout_height="wrap_content"
+        android:text="@string/leitner_description" />
 
-</FrameLayout>
+    <TextView
+        android:layout_margin="@dimen/text_margin"
+        android:id="@+id/description2"
+        android:text="@string/leitner_description_method"
+        android:layout_below="@+id/main_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

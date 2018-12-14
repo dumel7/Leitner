@@ -15,7 +15,7 @@ class LeitnerDescriptionFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_leitner_description, container, false)
-        activity.title = getString(R.string.title_LeitnerDescription)
+        activity.setTitle(R.string.title_LeitnerDescription)
         return view
     }
 

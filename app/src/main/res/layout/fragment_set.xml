@@ -6,17 +6,18 @@
 
     <TextView
         android:text="set_test"
-        android:id="@+id/content"
+        android:id="@+id/set_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
     <TextView
-        android:id="@+id/number"
+        android:id="@+id/set_number"
         android:text="16"
         android:gravity="end"
         android:layout_gravity="center"
         android:layout_margin="@dimen/text_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </LinearLayout>

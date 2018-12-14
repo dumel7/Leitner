@@ -65,7 +65,7 @@ class SwapFragment : Fragment() {
     }
 
     private fun finishLearn(){
-        Toast.makeText(context, "You've finished Learning", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "You've finished learning", Toast.LENGTH_LONG).show()
         activity.finish()
     }
 

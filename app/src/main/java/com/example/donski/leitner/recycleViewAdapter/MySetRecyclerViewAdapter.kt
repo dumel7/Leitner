@@ -75,8 +75,8 @@ class MySetRecyclerViewAdapter(private val mValues: List<SetItem>,
     }
 
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mContentView: TextView = mView.findViewById<View>(R.id.content) as TextView
-        val mCountView: TextView = mView.findViewById<View>(R.id.number) as TextView
+        val mContentView: TextView = mView.findViewById<View>(R.id.set_content) as TextView
+        val mCountView: TextView = mView.findViewById<View>(R.id.set_number) as TextView
         var mItem: SetItem? = null
 
         override fun toString(): String {

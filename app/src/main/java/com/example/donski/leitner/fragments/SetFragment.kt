@@ -10,6 +10,7 @@ import android.support.v7.widget.SearchView
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.*
 import android.widget.EditText
+import android.widget.Toast
 import com.example.donski.leitner.R
 import com.example.donski.leitner.SwipeToDeleteCallback
 import com.example.donski.leitner.contents.DeckContent.DeckItem
@@ -123,9 +124,16 @@ class SetFragment : Fragment() {
         val input = EditText(view!!.context)
         input.hint = "Title"
         alert.setView(input)
-        alert.setPositiveButton("Add") { _, _ ->   val cSet = db.setDao().insert(CSet(null, input.text.toString()))
-                                                        db.deckToSetDao().insert(DeckToSet(null, deck.deckId!!, cSet.toInt()))
-                                                        refreshAdapter()}
+        alert.setPositiveButton("Add") { _, _ ->
+            if (input.text.isEmpty()) {
+                Toast.makeText(context, "You cannot add empty set", Toast.LENGTH_LONG).show()
+            }else{
+                val cSet = db.setDao().insert(CSet(null, input.text.toString()))
+                db.deckToSetDao().insert(DeckToSet(null, deck.deckId!!, cSet.toInt()))
+                refreshAdapter()
+            }
+            }
+
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         alert.show()
 
@@ -142,9 +150,14 @@ class SetFragment : Fragment() {
         input.hint = "Title"
 
         alert.setView(input)
-        alert.setPositiveButton("Change") { _, _ ->    item!!.cSet.name = input.text.toString()
-            db.setDao().update(item.cSet)
-            refreshAdapter()
+        alert.setPositiveButton("Change") { _, _ ->
+            if (input.text.isEmpty()) {
+                Toast.makeText(context, "You cannot change to empty set", Toast.LENGTH_LONG).show()
+            }else {
+                item!!.cSet.name = input.text.toString()
+                db.setDao().update(item.cSet)
+                refreshAdapter()
+            }
         }
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         alert.show()

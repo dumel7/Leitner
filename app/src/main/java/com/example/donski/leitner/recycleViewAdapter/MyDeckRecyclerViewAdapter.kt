@@ -74,8 +74,8 @@ class MyDeckRecyclerViewAdapter(private val mValues: List<DeckItem>, private val
 
 
     class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val mContentView: TextView = mView.findViewById<View>(R.id.content) as TextView
-        val mCountView: TextView = mView.findViewById<View>(R.id.number) as TextView
+        val mContentView: TextView = mView.findViewById<View>(R.id.deck_content) as TextView
+        val mCountView: TextView = mView.findViewById<View>(R.id.deck_number) as TextView
         var mItem: DeckItem? = null
 
         override fun toString(): String {

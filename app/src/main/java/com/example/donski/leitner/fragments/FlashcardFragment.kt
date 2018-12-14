@@ -18,6 +18,7 @@ import com.example.donski.leitner.database.entities.CSet
 import com.example.donski.leitner.database.entities.Flashcard
 import com.example.donski.leitner.recycleViewAdapter.MyFlashcardRecyclerViewAdapter
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.example.donski.leitner.SwipeToDeleteCallback
 import com.example.donski.leitner.recycleViewAdapter.MyDeckRecyclerViewAdapter
 import java.time.LocalDateTime
@@ -134,8 +135,13 @@ class FlashcardFragment : Fragment() {
 
         alert.setView(layout)
         alert.setPositiveButton("Add") { _, _ ->
-            db.flashcardDao().insert(Flashcard(null, termBox.text.toString(),definitionBox.text.toString(), cSet.setId!!, 0, Date()))
-            refreshAdapter()}
+            if (termBox.text.isEmpty() or definitionBox.text.isEmpty()) {
+                Toast.makeText(context, "You cannot add empty flashcard", Toast.LENGTH_LONG).show()
+            } else {
+                db.flashcardDao().insert(Flashcard(null, termBox.text.toString(), definitionBox.text.toString(), cSet.setId!!, 0, Date()))
+                refreshAdapter()
+            }
+        }
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         alert.show()
 
@@ -163,10 +169,14 @@ class FlashcardFragment : Fragment() {
 
         alert.setView(layout)
         alert.setPositiveButton("Change") { _, _ ->
-            item!!.flashcard.term = termBox.text.toString()
-            item!!.flashcard.definition = definitionBox.text.toString()
-            db.flashcardDao().update(item.flashcard)
-            refreshAdapter()
+            if (termBox.text.isEmpty() or definitionBox.text.isEmpty()) {
+                Toast.makeText(context, "You cannot change to empty flashcard", Toast.LENGTH_LONG).show()
+            }else {
+                item!!.flashcard.term = termBox.text.toString()
+                item!!.flashcard.definition = definitionBox.text.toString()
+                db.flashcardDao().update(item.flashcard)
+                refreshAdapter()
+            }
         }
         alert.setNegativeButton("Cancel") { dialog, _ -> dialog.dismiss() }
         alert.show()

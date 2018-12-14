@@ -6,7 +6,7 @@
     tools:context=".fragments.SettingsFragment">
 
     <TextView
-        android:id="@+id/ver"
+        android:id="@+id/version_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
@@ -14,7 +14,7 @@
     <TextView
         android:clickable="true"
         android:focusable="true"
-        android:layout_below="@+id/ver"
+        android:layout_below="@+id/version_number"
         android:id="@+id/description"
         android:layout_margin="@dimen/text_margin"
         android:layout_width="match_parent"
